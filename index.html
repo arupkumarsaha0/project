@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Personal Website</title>
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Library for Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Custom CSS for Premium Theme -->
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f9fa;
             color: #212529;
+            scroll-behavior: smooth;
         }
+
         /* Navbar Styling */
         .navbar {
             background-color: #212529;
             padding: 1rem 2rem;
         }
+
         .navbar-brand {
             font-weight: 600;
             font-size: 1.5rem;
             color: #f8f9fa !important;
         }
+
         .nav-link {
             color: #f8f9fa !important;
             margin-right: 1.5rem;
             font-size: 1.1rem;
         }
+
         .nav-link:hover {
             color: #ffd700 !important;
+            transition: color 0.3s ease;
         }
+
         .btn-signup {
             background-color: #ffd700;
             color: #212529;
@@ -40,13 +52,14 @@
             border-radius: 30px;
             padding: 0.5rem 1.5rem;
         }
+
         .btn-signup:hover {
             background-color: #e0c200;
-            color: #212529;
         }
+
         /* Hero Section Styling */
         .hero {
-            background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url('https://via.placeholder.com/1920x1080'); /* Replace with your background image */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -56,16 +69,19 @@
             justify-content: center;
             text-align: center;
         }
+
         .hero h1 {
             font-size: 4rem;
             font-weight: 600;
             margin-bottom: 20px;
         }
+
         .hero p {
             font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: 40px;
         }
+
         .hero .btn-cta {
             background-color: #ffd700;
             color: #212529;
@@ -75,9 +91,151 @@
             font-size: 1.1rem;
             transition: background-color 0.3s ease;
         }
+
         .hero .btn-cta:hover {
             background-color: #e0c200;
         }
+
+        /* About Section */
+        #about {
+            padding: 5rem 0;
+            background-color: #ffffff;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        #about:hover {
+            transform: translateY(-10px);
+            opacity: 0.9;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+
+        #about p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        #skills:hover {
+            transform: translateY(-10px);
+            opacity: 0.9;
+        }
+
+        #skills h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+
+        .skill-item {
+            text-align: center;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            padding: 5rem 0;
+            background-color: #ffffff;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        #portfolio:hover {
+            transform: translateY(-10px);
+            opacity: 0.9;
+        }
+
+        #portfolio h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+
+        .portfolio-item {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        #testimonials:hover {
+            transform: translateY(-10px);
+            opacity: 0.9;
+        }
+
+        #testimonials h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+
+        .testimonial-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+            background-color: #ffffff;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        #contact:hover {
+            transform: translateY(-10px);
+            opacity: 0.9;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+
+        .contact-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
         /* Footer Styling */
         footer {
             background-color: #212529;
@@ -85,113 +243,254 @@
             padding: 50px 0;
             text-align: center;
         }
-        .footer-col {
+
+        footer .footer-content {
             text-align: left;
-            font-size: 0.95rem;
+            color: #f8f9fa;
+            padding: 2rem;
+            background-color: #343a40;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .footer-col p {
-            margin: 0;
+
+        footer h5 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
-        .footer-col a {
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
             color: #ffd700;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .footer-col a:hover {
-            text-decoration: underline;
+
+        footer ul li a:hover {
+            color: #e0c200;
         }
+
         .social-icons a {
             margin: 0 15px;
             color: #ffd700;
             font-size: 1.7rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
+
         .social-icons a:hover {
             color: #e0c200;
-        }
-        /* Custom Button Hover */
-        .btn {
-            transition: all 0.3s ease;
+            transform: scale(1.2);
         }
     </style>
 </head>
+
 <body>
 
-<!-- Updated Navigation Bar for Main Page -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <!-- Left Aligned Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="logo.png" alt="Logo" width="50" height="50" class="me-2"> <!-- Add your logo here -->
-      <!--<span>Arup Kumar Saha</span>-->
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="logo.png" alt="Logo" width="40" height="40" class="me-2"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#signin">Sign In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-signup" href="#signup">Sign Up</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Right Aligned Navigation Links -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#signin">Sign In</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-signup" href="#signup">Sign Up</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Creating exceptional digital experiences.</p>
+            <a href="#about" class="btn btn-cta">Explore More</a>
+        </div>
+    </section>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="container">
-    <h1>Welcome to My World</h1>
-    <p>Crafting digital experiences with creativity and innovation.</p>
-    <a href="#about" class="btn btn-cta">Learn More</a>
-  </div>
-</section>
+    <!-- About Section -->
+    <section id="about" data-aos="fade-up">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I'm Arup Kumar Saha, a passionate web developer with expertise in creating dynamic websites and
+                user-friendly interfaces. My goal is to deliver exceptional digital experiences tailored to your
+                business needs.</p>
+        </div>
+    </section>
 
-<!-- Content Section (for demonstration) -->
-<section id="about" class="my-5">
-  <div class="container">
-    <h2 class="text-center">About Me</h2>
-    <p class="text-center mt-4">Welcome to my personal website. I am Arup Kumar Saha, passionate about building professional websites and digital solutions.</p>
-  </div>
-</section>
+    <!-- Skills Section -->
+    <section id="skills" data-aos="fade-up">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="row">
+                <div class="col-md-4 skill-item" data-aos="zoom-in">
+                    <h4>Web Development</h4>
+                    <p>Building responsive and engaging websites using modern technologies.</p>
+                </div>
+                <div class="col-md-4 skill-item" data-aos="zoom-in" data-aos-delay="100">
+                    <h4>UI/UX Design</h4>
+                    <p>Designing user-friendly interfaces with smooth experiences.</p>
+                </div>
+                <div class="col-md-4 skill-item" data-aos="zoom-in" data-aos-delay="200">
+                    <h4>SEO Optimization</h4>
+                    <p>Optimizing websites to rank higher in search results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer Section -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <!-- Column 1: Copyright Information -->
-      <div class="col-md-6 footer-col">
-        <p>&copy; 2024 Arup Kumar Saha. All Rights Reserved.</p>
-      </div>
-      <!-- Column 2: Social Media Links -->
-      <div class="col-md-6 footer-col text-md-end social-icons">
-        <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
-        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="https://github.com" target="_blank"><i class="bi bi-github"></i></a>
-      </div>
-    </div>
-  </div>
-</footer>
+    <!-- Portfolio Section -->
+    <section id="portfolio" data-aos="fade-up">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <div class="row">
+                <div class="col-md-4 portfolio-item" data-aos="flip-left">
+                    <h4>Project 1</h4>
+                    <p>Professional website for a business client.</p>
+                </div>
+                <div class="col-md-4 portfolio-item" data-aos="flip-left" data-aos-delay="100">
+                    <h4>Project 2</h4>
+                    <p>Custom e-commerce platform for online sales.</p>
+                </div>
+                <div class="col-md-4 portfolio-item" data-aos="flip-left" data-aos-delay="200">
+                    <h4>Project 3</h4>
+                    <p>Responsive blog and content management system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Bootstrap 5.3 JS and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Bootstrap Icons (for the social media icons) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Testimonials Section -->
+    <section id="testimonials" data-aos="fade-up">
+        <div class="container">
+            <h2>Testimonials</h2>
+            <div class="row">
+                <div class="col-md-4 testimonial-item" data-aos="flip-right">
+                    <p>"Arup delivered outstanding work on our web development project!"</p>
+                    <h5>- Client 1</h5>
+                </div>
+                <div class="col-md-4 testimonial-item" data-aos="flip-right" data-aos-delay="100">
+                    <p>"Highly professional and creative. I highly recommend Arup."</p>
+                    <h5>- Client 2</h5>
+                </div>
+                <div class="col-md-4 testimonial-item" data-aos="flip-right" data-aos-delay="200">
+                    <p>"Great attention to detail and excellent communication."</p>
+                    <h5>- Client 3</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="row">
+                <div class="col-md-6 contact-item">
+                    <p>Email: arup.bu.bd@gmail.com</p>
+                </div>
+                <div class="col-md-6 contact-item">
+                    <p>Phone: 01646126678</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row footer-content">
+                <div class="col-md-4">
+                    <h5>About</h5>
+                    <p>I'm a web developer passionate about delivering custom solutions to meet your business needs. I specialize in creating professional websites with modern designs and interactive user interfaces.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Me</h5>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/arupkumarsaha0" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://twitter.com/arupkumarsaha0" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://linkedin.com/in/arupkumarsaha0" target="_blank"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/arupkumarsaha0" target="_blank"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>&copy; 2024 Arup Kumar Saha. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Trigger animations on hover for sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.addEventListener('mouseover', () => {
+                section.style.transform = 'translateY(-10px)';
+                section.style.opacity = '0.9';
+            });
+            section.addEventListener('mouseout', () => {
+                section.style.transform = 'translateY(0)';
+                section.style.opacity = '1';
+            });
+        });
+    </script>
 
 </body>
+
 </html>
