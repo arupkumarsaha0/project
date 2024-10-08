@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Personal Website</title>
+    <title>Professional Personal Website</title>
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- AOS Library for Animations -->
@@ -17,7 +17,7 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
             color: #212529;
             scroll-behavior: smooth;
         }
@@ -59,7 +59,7 @@
 
         /* Hero Section Styling */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -74,12 +74,14 @@
             font-size: 4rem;
             font-weight: 600;
             margin-bottom: 20px;
+            letter-spacing: 1.5px;
         }
 
         .hero p {
             font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: 40px;
+            letter-spacing: 1px;
         }
 
         .hero .btn-cta {
@@ -96,22 +98,22 @@
             background-color: #e0c200;
         }
 
-        /* About Section */
-        #about {
+        /* Content Styling */
+        .content-section {
             padding: 5rem 0;
-            background-color: #ffffff;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
             margin-bottom: 40px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
         }
 
-        #about:hover {
+        .content-section:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             transform: translateY(-10px);
-            opacity: 0.9;
         }
 
-        #about h2 {
+        .content-section h2 {
             font-size: 2.5rem;
             font-weight: 600;
             text-align: center;
@@ -119,111 +121,117 @@
             color: #0d6efd;
         }
 
-        #about p {
+        .content-section p {
             text-align: center;
             max-width: 700px;
             margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
-        /* Skills Section */
-        #skills {
-            padding: 5rem 0;
-            background-color: #f8f9fa;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        #skills:hover {
-            transform: translateY(-10px);
-            opacity: 0.9;
-        }
-
-        #skills h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #0d6efd;
-        }
-
+        /* Icons for Skills */
         .skill-item {
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .skill-item h4 {
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .skill-item p {
+            font-size: 1.1rem;
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: #0d6efd;
+            margin-bottom: 10px;
         }
 
         /* Portfolio Section */
-        #portfolio {
-            padding: 5rem 0;
-            background-color: #ffffff;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        #portfolio:hover {
-            transform: translateY(-10px);
-            opacity: 0.9;
-        }
-
-        #portfolio h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #0d6efd;
-        }
-
         .portfolio-item {
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
             text-align: center;
+        }
+
+        .portfolio-item h4 {
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .portfolio-item p {
+            font-size: 1.1rem;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            margin-bottom: 30px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
         }
 
         /* Testimonials Section */
-        #testimonials {
-            padding: 5rem 0;
-            background-color: #f8f9fa;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        #testimonials:hover {
-            transform: translateY(-10px);
-            opacity: 0.9;
-        }
-
-        #testimonials h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #0d6efd;
-        }
-
         .testimonial-item {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-item p {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .testimonial-item h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* Blog Section */
+        .blog-item {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .blog-item img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-item img:hover {
+            transform: scale(1.05);
         }
 
         /* Contact Section */
-        #contact {
-            padding: 5rem 0;
+        .contact-section {
+            padding: 4rem 0;
             background-color: #ffffff;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
         }
 
-        #contact:hover {
-            transform: translateY(-10px);
-            opacity: 0.9;
-        }
-
-        #contact h2 {
+        .contact-section h2 {
             font-size: 2.5rem;
             font-weight: 600;
             text-align: center;
@@ -233,12 +241,37 @@
 
         .contact-item {
             text-align: center;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #0d6efd;
+            margin-right: 10px;
+        }
+
+        .contact-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-contact {
+            background-color: #0d6efd;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background-color: #0056b3;
         }
 
         /* Footer Styling */
         footer {
-            background-color: #212529;
+            background-color: #343a40;
             color: #ffffff;
             padding: 50px 0;
             text-align: center;
@@ -248,7 +281,7 @@
             text-align: left;
             color: #f8f9fa;
             padding: 2rem;
-            background-color: #343a40;
+            background-color: #495057;
             border-radius: 20px;
             margin-bottom: 40px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -310,187 +343,237 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#signin">Sign In</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="btn btn-signup" href="#signup">Sign Up</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-signup" href="#contact">Hire Me</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Creating exceptional digital experiences.</p>
-            <a href="#about" class="btn btn-cta">Explore More</a>
-        </div>
-    </section>
+<section class="hero">
+  <div class="container">
+      <h1>Welcome to My Professional Portfolio</h1>
+      <p>Creating exceptional digital experiences with elegance and style.</p>
+      <a href="#about" class="btn btn-cta">Learn More</a>
+  </div>
+  <style>
+      .hero {
+          background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(hero.jpg) no-repeat center center;
+          background-size: cover;
+          height: 100vh;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+      }
+  </style>
+</section>
 
-    <!-- About Section -->
-    <section id="about" data-aos="fade-up">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I'm Arup Kumar Saha, a passionate web developer with expertise in creating dynamic websites and
-                user-friendly interfaces. My goal is to deliver exceptional digital experiences tailored to your
-                business needs.</p>
-        </div>
-    </section>
 
     <!-- Skills Section -->
-    <section id="skills" data-aos="fade-up">
+    <section id="skills" class="content-section">
         <div class="container">
             <h2>Skills</h2>
             <div class="row">
-                <div class="col-md-4 skill-item" data-aos="zoom-in">
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi-code-slash"></i>
                     <h4>Web Development</h4>
-                    <p>Building responsive and engaging websites using modern technologies.</p>
+                    <p>HTML, CSS, JavaScript, Bootstrap, React</p>
                 </div>
-                <div class="col-md-4 skill-item" data-aos="zoom-in" data-aos-delay="100">
-                    <h4>UI/UX Design</h4>
-                    <p>Designing user-friendly interfaces with smooth experiences.</p>
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi-pencil-square"></i>
+                    <h4>Design</h4>
+                    <p>UI/UX Design, Adobe Photoshop, Figma</p>
                 </div>
-                <div class="col-md-4 skill-item" data-aos="zoom-in" data-aos-delay="200">
-                    <h4>SEO Optimization</h4>
-                    <p>Optimizing websites to rank higher in search results.</p>
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi bi-briefcase"></i>
+                    <h4>Marketing</h4>
+                    <p>SEO, Social Media Marketing, Google Ads</p>
+                </div>
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi-brush"></i>
+                    <h4>Graphic Design</h4>
+                    <p>Illustrator, Branding, Print Design</p>
+                </div>
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi-laptop"></i>
+                    <h4>Software Development</h4>
+                    <p>Python, Java, C++, SQL</p>
+                </div>
+                <div class="col-md-4 skill-item">
+                    <i class="bi bi-people"></i>
+                    <h4>Team Collaboration</h4>
+                    <p>Agile Methodology, Communication, Leadership</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" data-aos="fade-up">
+    <section id="portfolio" class="content-section">
         <div class="container">
             <h2>Portfolio</h2>
             <div class="row">
-                <div class="col-md-4 portfolio-item" data-aos="flip-left">
+                <div class="col-md-4 portfolio-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Project 1" class="img-fluid">
                     <h4>Project 1</h4>
-                    <p>Professional website for a business client.</p>
+                    <p>Project description goes here.</p>
                 </div>
-                <div class="col-md-4 portfolio-item" data-aos="flip-left" data-aos-delay="100">
+                <div class="col-md-4 portfolio-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Project 2" class="img-fluid">
                     <h4>Project 2</h4>
-                    <p>Custom e-commerce platform for online sales.</p>
+                    <p>Project description goes here.</p>
                 </div>
-                <div class="col-md-4 portfolio-item" data-aos="flip-left" data-aos-delay="200">
+                <div class="col-md-4 portfolio-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Project 3" class="img-fluid">
                     <h4>Project 3</h4>
-                    <p>Responsive blog and content management system.</p>
+                    <p>Project description goes here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="content-section">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="row">
+                <div class="col-md-4 gallery-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 1">
+                </div>
+                <div class="col-md-4 gallery-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 2">
+                </div>
+                <div class="col-md-4 gallery-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 3">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" data-aos="fade-up">
+    <section id="testimonials" class="content-section">
         <div class="container">
             <h2>Testimonials</h2>
             <div class="row">
-                <div class="col-md-4 testimonial-item" data-aos="flip-right">
-                    <p>"Arup delivered outstanding work on our web development project!"</p>
-                    <h5>- Client 1</h5>
+                <div class="col-md-4 testimonial-item">
+                    <p>"This is a fantastic portfolio. Very professional and creative."</p>
+                    <h5>John Doe</h5>
                 </div>
-                <div class="col-md-4 testimonial-item" data-aos="flip-right" data-aos-delay="100">
-                    <p>"Highly professional and creative. I highly recommend Arup."</p>
-                    <h5>- Client 2</h5>
+                <div class="col-md-4 testimonial-item">
+                    <p>"Amazing work! I highly recommend their services."</p>
+                    <h5>Jane Smith</h5>
                 </div>
-                <div class="col-md-4 testimonial-item" data-aos="flip-right" data-aos-delay="200">
-                    <p>"Great attention to detail and excellent communication."</p>
-                    <h5>- Client 3</h5>
+                <div class="col-md-4 testimonial-item">
+                    <p>"Highly skilled and delivers on time. Great experience working with them."</p>
+                    <h5>Michael Brown</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="content-section">
+        <div class="container">
+            <h2>Blog</h2>
+            <div class="row">
+                <div class="col-md-4 blog-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 1">
+                    <h4>Blog Post 1</h4>
+                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
+                    <a href="#" class="btn btn-cta">Read More</a>
+                </div>
+                <div class="col-md-4 blog-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 2">
+                    <h4>Blog Post 2</h4>
+                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
+                    <a href="#" class="btn btn-cta">Read More</a>
+                </div>
+                <div class="col-md-4 blog-item">
+                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 3">
+                    <h4>Blog Post 3</h4>
+                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
+                    <a href="#" class="btn btn-cta">Read More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" data-aos="fade-up">
+    <section id="contact" class="contact-section">
         <div class="container">
-            <h2>Contact Me</h2>
-            <div class="row">
-                <div class="col-md-6 contact-item">
-                    <p>Email: arup.bu.bd@gmail.com</p>
-                </div>
-                <div class="col-md-6 contact-item">
-                    <p>Phone: 01646126678</p>
-                </div>
+            <h2>Contact</h2>
+            <div class="contact-item">
+                <i class="bi bi-envelope-fill"></i>
+                <p>Email: contact@example.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="bi bi-phone-fill"></i>
+                <p>Phone: +1234567890</p>
+            </div>
+            <div class="contact-btn">
+                <a href="mailto:contact@example.com" class="btn btn-contact">Contact Us</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
-        <div class="container">
-            <div class="row footer-content">
-                <div class="col-md-4">
-                    <h5>About</h5>
-                    <p>I'm a web developer passionate about delivering custom solutions to meet your business needs. I specialize in creating professional websites with modern designs and interactive user interfaces.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Me</h5>
-                    <div class="social-icons">
-                        <a href="https://facebook.com/arupkumarsaha0" target="_blank"><i class="bi bi-facebook"></i></a>
-                        <a href="https://twitter.com/arupkumarsaha0" target="_blank"><i class="bi bi-twitter"></i></a>
-                        <a href="https://linkedin.com/in/arupkumarsaha0" target="_blank"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://github.com/arupkumarsaha0" target="_blank"><i class="bi bi-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <p>&copy; 2024 Arup Kumar Saha. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+      <div class="container">
+          <div class="row footer-content">
+              <div class="col-md-4">
+                  <h5>About</h5>
+                  <p>I'm a web developer passionate about delivering custom solutions to meet your business needs. I specialize in creating professional websites with modern designs and interactive user interfaces.</p>
+              </div>
+              <div class="col-md-4">
+                  <h5>Quick Links</h5>
+                  <ul>
+                      <li><a href="index.html#about">About</a></li>
+                      <li><a href="index.html#skills">Skills</a></li>
+                      <li><a href="index.html#portfolio">Portfolio</a></li>
+                      <li><a href="index.html#contact">Contact</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h5>Follow Me</h5>
+                  <div class="social-icons">
+                      <a href="https://facebook.com/arupkumarsaha0" target="_blank"><i class="bi bi-facebook"></i></a>
+                      <a href="https://twitter.com/arupkumarsaha0" target="_blank"><i class="bi bi-twitter"></i></a>
+                      <a href="https://linkedin.com/in/arupkumarsaha" target="_blank"><i class="bi bi-linkedin"></i></a>
+                      <a href="https://instagram.com/arupkumarsaha0" target="_blank"><i class="bi bi-instagram"></i></a>
+                  </div>
+              </div>
+          </div>
+          <p class="text-center">© 2024 Arup Kumar Saha. All Rights Reserved.</p>
+      </div>
+  </footer>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap and AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Library -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // Trigger animations on hover for sections
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            section.addEventListener('mouseover', () => {
-                section.style.transform = 'translateY(-10px)';
-                section.style.opacity = '0.9';
-            });
-            section.addEventListener('mouseout', () => {
-                section.style.transform = 'translateY(0)';
-                section.style.opacity = '1';
-            });
-        });
+        AOS.init();
     </script>
-
 </body>
 
 </html>
