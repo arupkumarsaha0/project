@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Personal Website</title>
+    <title>Arup Kumar Saha</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- AOS Library for Animations -->
@@ -237,6 +238,9 @@
             text-align: center;
             margin-bottom: 30px;
             color: #0d6efd;
+            position: relative;
+           
+            transition: color 0.3s ease;
         }
 
         .contact-item {
@@ -326,6 +330,30 @@
             color: #e0c200;
             transform: scale(1.2);
         }
+        /* CSS for Animated Underline */
+
+
+    .contact-section h2::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #0d6efd; /* Change color if needed */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-section h2:hover {
+    color: #0d6efd; /* Text color on hover */
+}
+
+.contact-section h2:hover::after {
+    visibility: visible;
+    width: 100%;
+}
+
     </style>
 </head>
 
@@ -393,7 +421,7 @@
     <!-- Skills Section -->
     <section id="skills" class="content-section">
         <div class="container">
-            <h2>Skills</h2>
+            <h2 class="heading-underline">Skills</h2>
             <div class="row">
                 <div class="col-md-4 skill-item">
                     <i class="bi bi-code-slash"></i>
@@ -432,20 +460,20 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="content-section">
         <div class="container">
-            <h2>Portfolio</h2>
+            <h2 class="heading-underline">Portfolio</h2>
             <div class="row">
                 <div class="col-md-4 portfolio-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Project 1" class="img-fluid">
+                    <img src="portfolio1.jpg" alt="Project 1" class="img-fluid">
                     <h4>Project 1</h4>
                     <p>Project description goes here.</p>
                 </div>
                 <div class="col-md-4 portfolio-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Project 2" class="img-fluid">
+                    <img src="portfolio2.jpg" alt="Project 2" class="img-fluid">
                     <h4>Project 2</h4>
                     <p>Project description goes here.</p>
                 </div>
                 <div class="col-md-4 portfolio-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Project 3" class="img-fluid">
+                    <img src="portfolio3.jpg" alt="Project 3" class="img-fluid">
                     <h4>Project 3</h4>
                     <p>Project description goes here.</p>
                 </div>
@@ -456,16 +484,16 @@
     <!-- Gallery Section -->
     <section id="gallery" class="content-section">
         <div class="container">
-            <h2>Gallery</h2>
+            <h2 class="heading-underline">Gallery</h2>
             <div class="row">
                 <div class="col-md-4 gallery-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 1">
+                    <img src="gallary1.jpg" alt="Gallery Image 1">
                 </div>
                 <div class="col-md-4 gallery-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 2">
+                    <img src="gallary2.jpg" alt="Gallery Image 2">
                 </div>
                 <div class="col-md-4 gallery-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Gallery Image 3">
+                    <img src="gallary3.jpg" alt="Gallery Image 3">
                 </div>
             </div>
         </div>
@@ -474,7 +502,7 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="content-section">
         <div class="container">
-            <h2>Testimonials</h2>
+            <h2 class="heading-underline">Testimonials</h2>
             <div class="row">
                 <div class="col-md-4 testimonial-item">
                     <p>"This is a fantastic portfolio. Very professional and creative."</p>
@@ -495,25 +523,25 @@
     <!-- Blog Section -->
     <section id="blog" class="content-section">
         <div class="container">
-            <h2>Blog</h2>
+            <h2 class="heading-underline">Blog</h2>
             <div class="row">
                 <div class="col-md-4 blog-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 1">
-                    <h4>Blog Post 1</h4>
-                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
-                    <a href="#" class="btn btn-cta">Read More</a>
+                    <img src="https://www.mediabistro.com/wp-content/uploads/2016/02/xwhat-does-a-community-manager-do.jpg.pagespeed.ic.QH6L6pafyd.webp" alt="Blog Post 1">
+                    <h4>What Does a Web Designer Do?</h4>
+                    <p>If you’re looking to put your design sensibilities and technological savvy to good use, securing a job as a web designer may...</p>
+                    <a href="https://www.mediabistro.com/climb-the-ladder/skills-expertise/what-does-a-web-designer-do-anyway/" class="btn btn-cta">Read More</a>
                 </div>
                 <div class="col-md-4 blog-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 2">
-                    <h4>Blog Post 2</h4>
-                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
-                    <a href="#" class="btn btn-cta">Read More</a>
+                    <img src="https://www.mediabistro.com/wp-content/uploads/2016/01/xwhy-you-need-a-mentor-and-how-to-land-one.jpg.pagespeed.ic.s2jGaoATIG.webp" alt="Blog Post 2">
+                    <h4>Why You Need a Mentor, and How to Land One</h4>
+                    <p>As defined by the Merriam-Webster dictionary, a mentor is a trusted counselor or guide. But perhaps missing from this definition is the value attached to it—the esteem of connecting with a seasoned..</p>
+                    <a href="https://www.mediabistro.com/climb-the-ladder/skills-expertise/need-mentor-land-one/" class="btn btn-cta">Read More</a>
                 </div>
                 <div class="col-md-4 blog-item">
-                    <img src="https://via.placeholder.com/350x250" alt="Blog Post 3">
-                    <h4>Blog Post 3</h4>
-                    <p>Summary of the blog post goes here. A brief overview to entice readers to click and read more.</p>
-                    <a href="#" class="btn btn-cta">Read More</a>
+                    <img src="https://www.mediabistro.com/wp-content/uploads/2016/02/xtips-on-getting-your-copywriter-portfolio-started.jpg.pagespeed.ic.77BXUmgEN5.webp" alt="Blog Post 3">
+                    <h4>How to Get Your Copywriting Portfolio Started</h4>
+                    <p>Even the most skilled writers need a portfolio to show off their ability to collaborate with designers and conceptualize big ideas. If you’re looking..</p>
+                    <a href="https://www.mediabistro.com/climb-the-ladder/skills-expertise/how-to-get-your-copywriting-portfolio-started/" class="btn btn-cta">Read More</a>
                 </div>
             </div>
         </div>
@@ -522,20 +550,37 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2>Contact</h2>
+            <h2 class="heading-underline">Contact</h2>
             <div class="contact-item">
                 <i class="bi bi-envelope-fill"></i>
-                <p>Email: contact@example.com</p>
+                <p>Email: arup.bu.bd@gmail.com</p>
             </div>
             <div class="contact-item">
                 <i class="bi bi-phone-fill"></i>
-                <p>Phone: +1234567890</p>
+                <p>Phone: +8801646126678</p>
             </div>
             <div class="contact-btn">
-                <a href="mailto:contact@example.com" class="btn btn-contact">Contact Us</a>
+                <a href="mailto:arup.bu.bd@gmail.com" class="btn btn-contact">Contact Us</a>
             </div>
         </div>
     </section>
+
+    <!-- Newsletter Section -->
+<section class="newsletter py-5" style="background-color: #f8f9fa;">
+  <div class="container text-center">
+      <h2 class="mb-4">Subscribe to Our Newsletter</h2>
+      <p class="mb-4">Stay updated with the latest news and updates directly to your inbox. No spam, we promise!</p>
+      <form class="row g-3 justify-content-center">
+          <div class="col-auto">
+              <input type="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+      </form>
+  </div>
+</section>
+
 
     <!-- Footer Section -->
     <footer>
@@ -552,6 +597,7 @@
                       <li><a href="index.html#skills">Skills</a></li>
                       <li><a href="index.html#portfolio">Portfolio</a></li>
                       <li><a href="index.html#contact">Contact</a></li>
+                      <li><a href="privacypolicy.html">Privacy Policy</a></li>
                   </ul>
               </div>
               <div class="col-md-4">
@@ -561,6 +607,8 @@
                       <a href="https://twitter.com/arupkumarsaha0" target="_blank"><i class="bi bi-twitter"></i></a>
                       <a href="https://linkedin.com/in/arupkumarsaha" target="_blank"><i class="bi bi-linkedin"></i></a>
                       <a href="https://instagram.com/arupkumarsaha0" target="_blank"><i class="bi bi-instagram"></i></a>
+                      <a href="https://github.com/arupkumarsaha0" target="_blank"><i class="bi bi-github"></i></a>
+                      <a href="https://threads.net/arupkumarsaha0" target="_blank"><i class="bi bi-threads"></i></a>
                   </div>
               </div>
           </div>
