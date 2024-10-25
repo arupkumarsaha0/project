@@ -17,9 +17,9 @@
             background-color: #f8f9fa;
             color: #212529;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -28,12 +28,15 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 2rem;
         }
 
         h2 {
             margin-bottom: 2rem;
             color: #0d6efd;
+            text-align: center;
         }
 
         .btn-signin {
@@ -48,6 +51,66 @@
 
         .text-center {
             margin-top: 1.5rem;
+        }
+
+        /* Footer styling from index.html */
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer .footer-content {
+            text-align: left;
+            color: #f8f9fa;
+            padding: 2rem;
+            background-color: #495057;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer h5 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #e0c200;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            color: #ffd700;
+            font-size: 1.7rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #e0c200;
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -70,6 +133,31 @@
             <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </div>
     </div>
+
+    <!-- Simplified Footer -->
+<footer style="background-color: #343a40; color: #ffffff; padding: 20px; text-align: center;">
+    
+    <h5>Quick Links</h5>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+        <a href="index.html" style="color: #ffd700; text-decoration: none;">Home</a>
+        <a href="index.html#about" style="color: #ffd700; text-decoration: none;">About</a>
+        <a href="index.html#skills" style="color: #ffd700; text-decoration: none;">Skills</a>
+        <a href="index.html#portfolio" style="color: #ffd700; text-decoration: none;">Portfolio</a>
+        <a href="index.html#contact" style="color: #ffd700; text-decoration: none;">Contact</a>
+        <a href="privacypolicy.html" style="color: #ffd700; text-decoration: none;">Privacy Policy</a>
+    </div>
+    <div style="margin-top: 10px;">
+        <label for="language" style="color: #ffffff; margin-right: 10px;">Language:</label>
+        <select id="language" style="padding: 5px; border-radius: 5px;">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="cn">Chinese</option>
+        </select>
+    </div>
+</footer>
+
 
     <!-- Bootstrap 5.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

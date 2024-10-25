@@ -17,9 +17,9 @@
             background-color: #f8f9fa;
             color: #212529;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -28,12 +28,16 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 2rem;
+            margin-bottom: auto;
         }
 
         h2 {
             margin-bottom: 2rem;
             color: #0d6efd;
+            text-align: center;
         }
 
         .btn-signup {
@@ -49,24 +53,83 @@
         .text-center {
             margin-top: 1.5rem;
         }
+
+        /* Password criteria styling */
+        .password-criteria {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #e0c200;
+        }
+
+        .language-select {
+            margin-top: 10px;
+        }
+
+        .language-select select {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="form-container">
         <h2>Sign Up</h2>
-        <form>
+        <form onsubmit="return validateForm()">
             <div class="mb-3">
-                <label for="name" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="name" required>
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Choose a unique username" required>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" required>
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter a valid email address" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Enter your address" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+                <small class="password-criteria">Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.</small>
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" placeholder="Re-enter your password" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="accept-policy" required>
+                <label class="form-check-label" for="accept-policy">I accept the <a href="privacypolicy.html" target="_blank">Privacy Policy</a></label>
             </div>
             <button type="submit" class="btn btn-signup w-100">Sign Up</button>
         </form>
@@ -74,6 +137,54 @@
             <p>Already have an account? <a href="signin.html">Sign In</a></p>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>
+            <a href="index.html#about">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="privacypolicy.html">Privacy Policy</a>
+        </div>
+        <div class="language-select">
+            <label for="language" style="color: #ffffff; margin-right: 5px;">Language:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="cn">Chinese</option>
+            </select>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Form Validation -->
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const acceptPolicy = document.getElementById('accept-policy').checked;
+            const passwordCriteria = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!passwordCriteria.test(password)) {
+                alert('Password does not meet the criteria.');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return false;
+            }
+
+            if (!acceptPolicy) {
+                alert('You must accept the Privacy Policy to continue.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 
     <!-- Bootstrap 5.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
