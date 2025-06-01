@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পৃথিবীর ইন্টারেক্টিভ মানচিত্র (এরিয়াসহ)</title>
+    <title>বিশ্ব মানচিত্র (উন্নত দেশভিত্তিক আকৃতি ও তথ্যসহ)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8; /* হালকা ধূসর-নীল পটভূমি */
+            background-color: #f9fafb; /* খুবই হালকা ধূসর */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,335 +26,344 @@
         #map {
             height: 80vh;
             width: 100%;
-            max-width: 1400px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 1600px;
+            border-radius: 14px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.15);
             margin-top: 20px;
-            border: 1px solid #cbd5e1; /* হালকা ধূসর বর্ডার */
+            border: 1px solid #e5e7eb; /* হালকা বর্ডার */
         }
         .leaflet-popup-content-wrapper {
-            border-radius: 8px;
+            border-radius: 10px;
             background-color: #ffffff;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         .leaflet-popup-content {
             font-size: 14px;
-            color: #1e293b; /* গাঢ় স্লেট */
+            color: #1f2937;
             font-weight: 500;
             line-height: 1.7;
+            padding: 8px 12px;
         }
-        .leaflet-popup-content b {
-            color: #0f172a; /* আরও গাঢ় */
-            font-size: 1.1em;
+        .leaflet-popup-content .country-name-bn {
+            font-weight: 700;
+            font-size: 1.25em;
+            color: #1e40af; /* গাঢ় নীল */
+            display: block;
+            margin-bottom: 3px;
         }
-        .leaflet-tooltip {
-            background-color: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-weight: bold;
-            color: #334155; /* মাঝারি স্লেট */
+        .leaflet-popup-content .country-name-en {
+            font-size: 0.85em;
+            color: #4b5569;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .leaflet-popup-content .info-text {
+            font-size: 0.95em;
+            color: #374151;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .leaflet-popup-content .info-text strong {
+            font-weight: 600;
+            color: #111827;
+        }
+        .leaflet-tooltip.custom-country-tooltip-v8 {
+            background-color: rgba(31, 41, 55, 0.92); /* গাঢ় স্লেট, স্বচ্ছ */
+            border: none;
+            border-radius: 6px;
+            padding: 8px 13px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #f3f4f6; /* হালকা ধূসর টেক্সট */
+            box-shadow: 0 3px 12px rgba(0,0,0,0.3);
         }
         .legend {
-            padding: 12px 15px;
-            background: rgba(255,255,255,0.95);
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 3px 28px rgba(0,0,0,0.18);
             border-radius: 10px;
-            line-height: 26px;
-            color: #334155;
-            font-size: 13px;
+            line-height: 23px;
+            color: #374151;
+            font-size: 11.5px; /* সামান্য বড় */
+            max-height: 360px;
+            overflow-y: auto;
         }
         .legend h4 {
             margin-top: 0;
-            margin-bottom: 10px;
-            color: #1e3a8a; /* গাঢ় নীল */
-            font-weight: bold;
+            margin-bottom: 12px;
+            color: #1e40af;
+            font-weight: 700;
             text-align: center;
-            border-bottom: 1px solid #e2e8f0; /* হালকা ধূসর লাইন */
-            padding-bottom: 6px;
-            font-size: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 8px;
+            font-size: 15.5px;
         }
         .legend i {
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             float: left;
-            margin-right: 10px;
-            opacity: 0.85;
-            border-radius: 4px; /* চতুর্ভুজ আইকন */
+            margin-right: 7px;
+            opacity: 0.88;
+            border-radius: 4px;
         }
+        .legend .continent-group-v8 {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #1e40af;
+            margin-top: 9px;
+            margin-bottom: 4px;
+            display: block;
+            clear: both;
+        }
+         .legend .subregion-entry-v8 {
+            display: block;
+            margin-bottom: 2px;
+            clear: both;
+        }
+
         .info-box {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 20px 25px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
             margin-bottom: 20px;
             text-align: center;
             width: 100%;
             max-width: 1200px;
         }
         .info-box h1 {
-            color: #1e3a8a; /* গাঢ় নীল */
+            color: #1e40af;
             font-weight: 700;
             font-size: 2rem;
         }
         .info-box p {
-            color: #475569; /* স্লেট */
+            color: #374151;
             font-size: 1.1rem;
         }
         /* মোবাইল ডিভাইসের জন্য */
         @media (max-width: 768px) {
             #map { height: 75vh; }
-            .info-box h1 { font-size: 1.6rem; }
+            .info-box h1 { font-size: 1.7rem; }
             .info-box p { font-size: 1rem; }
-            .legend { font-size: 12px; line-height: 22px; padding: 10px; }
-            .legend h4 { font-size: 14px; }
-            .legend i { width: 16px; height: 16px; margin-right: 6px; }
+            .legend { font-size: 10.5px; line-height: 20px; padding: 9px; max-height: 290px;}
+            .legend h4 { font-size: 13.5px; }
+            .legend i { width: 13px; height: 13px; margin-right: 6px; }
         }
     </style>
 </head>
-<body class="bg-slate-100">
+<body class="bg-gray-100">
 
-    <div class="info-box mt-5 mx-auto p-6 bg-white rounded-xl shadow-lg w-full max-w-4xl text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3">পৃথিবীর ভৌগোলিক মানচিত্র (এরিয়াসহ)</h1>
-        <p class="text-slate-600 text-base md:text-lg">এই ইন্টারেক্টিভ মানচিত্রে পৃথিবীর বিভিন্ন মহাদেশ তাদের প্রকৃত এলাকাসহ দেখানো হয়েছে। প্রতিটি মহাদেশের উপর হোভার করলে বা ক্লিক করলে বিস্তারিত তথ্য জানতে পারবেন।</p>
+    <div class="info-box mt-5 mx-auto p-6 bg-white rounded-xl shadow-xl w-full max-w-5xl text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-3">বিশ্ব মানচিত্র (উন্নত দেশভিত্তিক আকৃতি ও তথ্যসহ)</h1>
+        <p class="text-slate-700 text-base md:text-lg">এই ইন্টারেক্টিভ মানচিত্রে নির্বাচিত দেশগুলোকে তাদের ভৌগোলিক উপ-অঞ্চল অনুযায়ী রঙিনভাবে এবং উন্নত (কিন্তু সরলীকৃত) আকৃতিতে দেখানো হয়েছে। প্রতিটি দেশের উপর হোভার করলে বা ক্লিক করলে বিস্তারিত তথ্য জানতে পারবেন।</p>
+        <p class="text-xs text-slate-500 mt-2">দ্রষ্টব্য: এটি একটি সরলীকৃত উপস্থাপনা। দেশগুলোর সীমানা কাল্পনিক এবং শুধুমাত্র প্রদর্শনীর উদ্দেশ্যে তৈরি। সকল দেশ অন্তর্ভুক্ত নাও থাকতে পারে।</p>
     </div>
 
     <div id="map"></div>
 
     <script>
-        // -- মানচিত্র আরম্ভকরণ --
-        const map = L.map('map').setView([20, 30], 2); // কেন্দ্র এবং জুম লেভেল
+        // -- Initialize map --
+        const map = L.map('map').setView([20, 35], 2.3); // Center and zoom
 
-        // -- টাইল লেয়ার --
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+        // -- Tile layer --
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 10, // মহাদেশ দেখার জন্য বেশি জুমের প্রয়োজন নেই
-            minZoom: 2
+            subdomains: 'abcd', maxZoom: 12, minZoom: 2
         }).addTo(map);
 
-        // -- মহাদেশসমূহের GeoJSON ডেটা (সরলীকৃত) --
-        // দ্রষ্টব্য: এটি একটি অত্যন্ত সরলীকৃত GeoJSON। বাস্তব ডেটা অনেক জটিল।
-        // এই ডেটা শুধুমাত্র প্রদর্শনের উদ্দেশ্যে তৈরি।
-        const continentsGeoJSON = {
+        // -- Sub-region colors --
+        const subRegionColors = {
+            "পশ্চিম এশিয়া": "#FFAB91", // Deep Orange Lighten-2
+            "দক্ষিণ এশিয়া": "#FFCC80", // Orange Lighten-2
+            "পূর্ব এশিয়া": "#FFF59D",   // Yellow Lighten-2
+            "দক্ষিণ-পূর্ব এশিয়া": "#A5D6A7", // Green Lighten-3 (Changed for SE Asia)
+            "মধ্য এশিয়া": "#BCAAA4",   // Brown Lighten-2
+            "উত্তর আফ্রিকা": "#80CBC4", // Teal Lighten-2
+            "পশ্চিম আফ্রিকা": "#C5E1A5", // Light Green Lighten-2
+            "মধ্য আফ্রিকা": "#9FA8DA",   // Indigo Lighten-2
+            "পূর্ব আফ্রিকা": "#B39DDB",   // Deep Purple Lighten-2
+            "দক্ষিণ আফ্রিকা (অঞ্চল)": "#CE93D8", // Purple Lighten-2
+            "পশ্চিম ইউরোপ": "#90CAF9", // Blue Lighten-2
+            "দক্ষিণ ইউরোপ": "#81D4FA", // Light Blue Lighten-2
+            "পূর্ব ইউরোপ": "#F48FB1",   // Pink Lighten-2
+            "উত্তর ইউরোপ": "#80DEEA", // Cyan Lighten-2
+            "মার্কিন যুক্তরাষ্ট্র (অঞ্চল)": "#CFD8DC", // Blue Grey Lighten-2
+            "কানাডা (অঞ্চল)": "#B0BEC5",       // Blue Grey Lighten-1
+            "মেক্সিকো (অঞ্চল)": "#90A4AE",      // Blue Grey
+            "ক্যারিবিয়ান": "#B3E5FC",    // Light Blue Lighten-3
+            "দক্ষিণ আমেরিকা (অঞ্চল)": "#A5D6A7", // Green Lighten-2
+            "অস্ট্রেলিয়া (অঞ্চল)": "#FFE0B2", // Orange Lighten-3
+            "নিউজিল্যান্ড (অঞ্চল)": "#FFF9C4", // Yellow Lighten-3
+            "ওশেনিয়া দ্বীপপুঞ্জ": "#E6CEFF", // Lighter Purple
+            "আন্টার্কটিকা": "#F5F5F5"     // Grey Lighten-4
+        };
+
+        // -- More detailed (but still simplified) GeoJSON for selected countries --
+        const worldCountriesGeoJSON = {
             "type": "FeatureCollection",
             "features": [
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "এশিয়া",
-                        "name_en": "Asia",
-                        "color": "#FF6347", // Tomato
-                        "area_km2": "৪৪.৬ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": { // কাল্পনিক এবং অত্যন্ত সরলীকৃত স্থানাঙ্ক
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[30, 20], [180, 20], [180, 80], [30, 80], [30, 20]]
-                        ]
-                    }
+                // South Asia (Improved shapes based on user's image)
+                { "type": "Feature", "properties": { "name_bn": "ভারত", "name_en": "India", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[68.1,37.1],[77.0,35.5],[80.0,32.0],[97.4,28.0],[97.4,20.0],[92.0,22.0],[88.0,20.0],[89.0,21.7],[82.0,17.0],[79.9,6.7],[72.0,20.0],[68.1,23.9],[68.1,37.1]]]} },
+                { "type": "Feature", "properties": { "name_bn": "পাকিস্তান", "name_en": "Pakistan", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[60.8,37.1],[77.0,35.5],[75.0,29.0],[70.0,23.9],[60.8,23.9],[60.8,37.1]]]} },
+                { "type": "Feature", "properties": { "name_bn": "আফগানিস্তান", "name_en": "Afghanistan", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[60.5,38.5],[75.0,38.5],[75.0,35.5],[71.0,29.5],[60.5,29.5],[60.5,38.5]]]} },
+                { "type": "Feature", "properties": { "name_bn": "নেপাল", "name_en": "Nepal", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[80.0,30.5],[88.2,30.5],[88.2,26.3],[80.0,26.3],[80.0,30.5]]]} },
+                { "type": "Feature", "properties": { "name_bn": "ভুটান", "name_en": "Bhutan", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[88.7,28.2],[92.1,28.2],[92.1,26.7],[88.7,26.7],[88.7,28.2]]]} },
+                { "type": "Feature", "properties": { "name_bn": "বাংলাদেশ", "name_en": "Bangladesh", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[88.0,26.6],[92.7,26.0],[92.7,20.7],[91.0,20.8],[89.9,21.7],[88.0,21.7],[88.0,24.0],[88.0,26.6]]]} },
+                { "type": "Feature", "properties": { "name_bn": "শ্রীলংকা", "name_en": "Sri Lanka", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[79.6,9.8],[81.9,9.8],[81.9,5.9],[80.4,5.9],[79.6,7.0],[79.6,9.8]]]} }, // Teardrop-like
+                { "type": "Feature", "properties": { "name_bn": "মালদ্বীপ", "name_en": "Maldives", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ এশিয়া" }, // Represented as a small area
+                  "geometry": {"type": "Polygon", "coordinates": [[[73.0,4.5],[73.8,4.5],[73.8,3.5],[73.0,3.5],[73.0,4.5]]]} },
+
+                // West Asia
+                { "type": "Feature", "properties": { "name_bn": "সৌদি আরব", "name_en": "Saudi Arabia", "continent_bn": "এশিয়া", "sub_region_bn": "পশ্চিম এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[34.5,31.5],[55.7,27.5],[55.7,16.3],[34.5,16.3],[34.5,31.5]]]} },
+
+                // East Asia
+                { "type": "Feature", "properties": { "name_bn": "জাপান", "name_en": "Japan", "continent_bn": "এশিয়া", "sub_region_bn": "পূর্ব এশিয়া" },
+                  "geometry": {"type": "MultiPolygon", "coordinates": [
+                      [[[139.0,34.0],[141.5,34.5],[142.0,37.5],[140.0,38.0],[138.5,36.0],[139.0,34.0]]], // Honshu part
+                      [[[129.5,30.0],[132.5,30.5],[132.0,33.5],[129.5,33.0],[129.5,30.0]]], // Kyushu part
+                      [[[140.5,40.5],[146.0,41.0],[145.5,45.5],[140.0,45.0],[140.5,40.5]]]  // Hokkaido part
+                  ]} },
+                { "type": "Feature", "properties": { "name_bn": "চীন", "name_en": "China", "continent_bn": "এশিয়া", "sub_region_bn": "পূর্ব এশিয়া" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[73.5,53.5],[134.7,53.5],[134.7,20.0],[120.0,20.0],[100.0,22.0],[73.5,18.0],[73.5,53.5]]]} },
+
+
+                // Southeast Asia
+                 { "type": "Feature", "properties": { "name_bn": "ইন্দোনেশিয়া", "name_en": "Indonesia", "continent_bn": "এশিয়া", "sub_region_bn": "দক্ষিণ-পূর্ব এশিয়া" },
+                  "geometry": {"type": "MultiPolygon", "coordinates": [
+                      [[[95,-11],[110,-11],[110,0],[95,0],[95,-11]]], // Sumatra/Java like
+                      [[[118,-10],[141,-10],[141,2],[118,2],[118,-10]]] // Eastern part like
+                  ]} },
+
+                // Europe (Italy with a boot shape)
+                { "type": "Feature", "properties": { "name_bn": "ইতালি", "name_en": "Italy", "continent_bn": "ইউরোপ", "sub_region_bn": "দক্ষিণ ইউরোপ" },
+                  "geometry": {"type": "Polygon", "coordinates": [
+                      [[7.0,47.0],[13.0,47.0],[13.5,44.0],[18.5,40.0],[16.0,38.0],[12.5,37.5],[10.0,40.0],[7.0,43.0],[7.0,47.0]]
+                  ]} },
+                { "type": "Feature", "properties": { "name_bn": "যুক্তরাজ্য", "name_en": "United Kingdom", "continent_bn": "ইউরোপ", "sub_region_bn": "পশ্চিম ইউরোপ" },
+                    "geometry": {"type": "MultiPolygon", "coordinates": [
+                        [[[ -8.6, 49.8],[1.8, 49.8],[1.8, 55.8],[ -2.0, 60.8],[ -5.0, 60.8], [-8.6, 58.0], [-8.6, 49.8]]], // Great Britain
+                        [[[-8.0,55.2],[-5.5,55.2],[-5.5,54.0],[-8.0,54.0],[-8.0,55.2]]] // Northern Ireland
+                    ]}
                 },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "আফ্রিকা",
-                        "name_en": "Africa",
-                        "color": "#4682B4", // SteelBlue
-                        "area_km2": "৩০.৪ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[-20, 38], [55, 38], [55, -35], [-20, -35], [-20, 38]]
-                        ]
-                    }
+                { "type": "Feature", "properties": { "name_bn": "জার্মানি", "name_en": "Germany", "continent_bn": "ইউরোপ", "sub_region_bn": "পশ্চিম ইউরোপ" },
+                    "geometry": {"type": "Polygon", "coordinates": [[[5.8,55.1],[15.0,55.1],[15.0,47.2],[10.0,47.2],[5.8,49.0], [5.8,55.1]]]}
                 },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "ইউরোপ",
-                        "name_en": "Europe",
-                        "color": "#32CD32", // LimeGreen
-                        "area_km2": "১০.২ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[-10, 35], [60, 35], [60, 70], [-10, 70], [-10, 35]]
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "উত্তর আমেরিকা",
-                        "name_en": "North America",
-                        "color": "#FFD700", // Gold
-                        "area_km2": "২৪.২ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[-170, 10], [-50, 10], [-50, 80], [-170, 80], [-170, 10]]
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "দক্ষিণ আমেরিকা",
-                        "name_en": "South America",
-                        "color": "#6A5ACD", // SlateBlue
-                        "area_km2": "১৭.৮ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[-85, 15], [-30, 15], [-30, -55], [-85, -55], [-85, 15]]
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "ওশেনিয়া / অস্ট্রেলিয়া",
-                        "name_en": "Oceania / Australia",
-                        "color": "#FF4500", // OrangeRed
-                        "area_km2": "৮.৫ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[110, -10], [180, -10], [180, -50], [110, -50], [110, -10]]
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "name_bn": "অ্যান্টার্কটিকা",
-                        "name_en": "Antarctica",
-                        "color": "#87CEEB", // SkyBlue
-                        "area_km2": "১৪.২ মিলিয়ন বর্গ কি.মি."
-                    },
-                    "geometry": { // দক্ষিণ মেরুর কাছাকাছি একটি বৃত্তাকার এলাকা (খুবই সরলীকৃত)
-                        "type": "Polygon",
-                        "coordinates": [
-                            [[0, -60], [90, -60], [180, -60], [-90, -60], [0, -60] ]
-                        ]
-                    }
-                }
+
+
+                // Africa
+                { "type": "Feature", "properties": { "name_bn": "মিশর", "name_en": "Egypt", "continent_bn": "আফ্রিকা", "sub_region_bn": "উত্তর আফ্রিকা" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[24.9,31.7],[35.9,31.7],[37.0,22.0],[30.0,22.0],[24.9,25.0],[24.9,31.7]]]} },
+                { "type": "Feature", "properties": { "name_bn": "দক্ষিণ আফ্রিকা", "name_en": "South Africa", "continent_bn": "আফ্রিকা", "sub_region_bn": "দক্ষিণ আফ্রিকা (অঞ্চল)" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[16.4,-22.1],[32.9,-22.1],[32.9,-29.0],[28.0,-34.8],[20.0,-34.8],[16.4,-28.7],[16.4,-22.1]]]} },
+
+
+                // North America
+                { "type": "Feature", "properties": { "name_bn": "মার্কিন যুক্তরাষ্ট্র", "name_en": "USA (Mainland)", "continent_bn": "উত্তর আমেরিকা", "sub_region_bn": "মার্কিন যুক্তরাষ্ট্র (অঞ্চল)" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[-125,49.4],[-100,49.4],[-82,47],[-66.9,45.0],[-75.0,35.0],[-80.0,24.5],[-98.0,24.5],[-110,31],[-125,32.5],[-125,49.4]]]} },
+                { "type": "Feature", "properties": { "name_bn": "কানাডা", "name_en": "Canada", "continent_bn": "উত্তর আমেরিকা", "sub_region_bn": "কানাডা (অঞ্চল)" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[-141,70.0],[-100,83.1],[-60,83.1],[-52.6,60.0],[-60.0,45.0],[-100,49.4],[-141,49.4],[-141,70.0]]]} },
+
+
+                // South America
+                { "type": "Feature", "properties": { "name_bn": "ব্রাজিল", "name_en": "Brazil", "continent_bn": "দক্ষিণ আমেরিকা", "sub_region_bn": "দক্ষিণ আমেরিকা (অঞ্চল)" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[-74,5.3],[-50,5.3],[-34.8,0],[-34.8,-10.0],[-45.0,-15.0],[-34.8,-33.8],[-55.0,-33.8],[-70,-15],[-74,-10.0],[-74,5.3]]]} },
+
+                // Oceania
+                { "type": "Feature", "properties": { "name_bn": "অস্ট্রেলিয়া", "name_en": "Australia", "continent_bn": "অস্ট্রেলিয়া ও ওশেনিয়া", "sub_region_bn": "অস্ট্রেলিয়া (অঞ্চল)" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[112,-10.0],[140,-10.0],[154,-15.0],[154,-28.0],[145,-39.0],[130,-39.0],[112,-30.0],[112,-10.0]]]} },
+
+                // Antarctica
+                { "type": "Feature", "properties": { "name_bn": "আন্টার্কটিকা", "name_en": "Antarctica", "continent_bn": "আন্টার্কটিকা", "sub_region_bn": "আন্টার্কটিকা" },
+                  "geometry": {"type": "Polygon", "coordinates": [[[-180,-65],[0,-60],[180,-65],[180,-85],[0,-90],[-180,-85],[-180,-65]]]} }
             ]
         };
-        // গুরুত্বপূর্ণ দ্রষ্টব্য: উপরের GeoJSON ডেটা শুধুমাত্র একটি উদাহরণ এবং ভৌগোলিকভাবে সঠিক নয়।
-        // একটি বাস্তব অ্যাপ্লিকেশনের জন্য, সঠিক GeoJSON ফাইল ব্যবহার করা উচিত।
-        // আপনি এই ধরনের ডেটা Natural Earth Data (naturalearthdata.com) বা অন্যান্য উৎস থেকে পেতে পারেন।
-        // যেমন: https://github.com/datasets/geo-countries অথবা https://geojson-maps.ash.ms/
 
-        // -- GeoJSON লেয়ার স্টাইল এবং ইন্টারেকশন --
+        // -- GeoJSON layer style and interaction --
         function style(feature) {
             return {
-                fillColor: feature.properties.color,
-                weight: 1.5,
+                fillColor: subRegionColors[feature.properties.sub_region_bn] || '#e0e0e0',
+                weight: 0.9,
                 opacity: 1,
-                color: 'white', // সীমানা রঙ
-                dashArray: '3',
-                fillOpacity: 0.65
+                color: '#424242',
+                fillOpacity: 0.82
             };
         }
 
         let highlightedLayer = null;
-
         function highlightFeature(e) {
             const layer = e.target;
-            if (highlightedLayer && highlightedLayer !== layer) {
-                 geojsonLayer.resetStyle(highlightedLayer); // আগের হাইলাইট করা লেয়ার রিসেট করুন
-            }
-
-            layer.setStyle({
-                weight: 3,
-                color: '#4a5569', // গাঢ় সীমানা রঙ
-                dashArray: '',
-                fillOpacity: 0.8
-            });
-
-            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                layer.bringToFront();
-            }
+            if (highlightedLayer && highlightedLayer !== layer) { geojsonLayer.resetStyle(highlightedLayer); }
+            layer.setStyle({ weight: 2.2, color: '#000000', fillOpacity: 0.92 });
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) { layer.bringToFront(); }
             highlightedLayer = layer;
         }
-
         function resetHighlight(e) {
-            // e.target ব্যবহার না করে geojsonLayer.resetStyle(highlightedLayer) ব্যবহার করা ভালো
-            // যদি মাউস দ্রুত সরানো হয়, e.target সঠিক লেয়ার নাও হতে পারে
-            if (highlightedLayer) {
-                 geojsonLayer.resetStyle(highlightedLayer);
-                 highlightedLayer = null;
-            }
+            if (highlightedLayer) { geojsonLayer.resetStyle(highlightedLayer); highlightedLayer = null; }
         }
 
         function onEachFeature(feature, layer) {
-            // পপআপ তথ্য
-            let popupContent = `<b>${feature.properties.name_bn} (${feature.properties.name_en})</b>`;
-            if (feature.properties.area_km2) {
-                popupContent += `<br>আনুমানিক আয়তন: ${feature.properties.area_km2}`;
-            }
+            const props = feature.properties;
+            let popupContent = `<span class="country-name-bn">${props.name_bn}</span>`;
+            if (props.name_en) popupContent += `<span class="country-name-en">(${props.name_en})</span>`;
+            if (props.sub_region_bn) popupContent += `<span class="info-text"><strong>অঞ্চল:</strong> ${props.sub_region_bn}</span>`;
+            if (props.continent_bn) popupContent += `<span class="info-text"><strong>মহাদেশ:</strong> ${props.continent_bn}</span>`;
             layer.bindPopup(popupContent);
 
-            // টুলটিপ (হোভার করলে নাম দেখাবে)
-            layer.bindTooltip(feature.properties.name_bn, {
-                permanent: false, // হোভার করলেই দেখাবে
-                direction: 'center',
-                className: 'leaflet-tooltip'
+            layer.bindTooltip(props.name_bn, {
+                permanent: false, direction: 'auto', className: 'custom-country-tooltip-v8', offset: L.point(0, -10)
             });
-
             layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlight,
-                click: function(e) {
-                    // ক্লিকে জুম করার চেষ্টা (যদি বাউন্ডস পাওয়া যায়)
-                    try {
-                        if (e.target.getBounds && Object.keys(e.target.getBounds()).length > 0) {
-                           map.fitBounds(e.target.getBounds());
-                        } else {
-                            // বাউন্ডস না পেলে একটি নির্দিষ্ট জুম লেভেলে সেন্টারে নিয়ে যাওয়া
-                            map.setView(e.latlng, map.getZoom() < 4 ? 4 : map.getZoom());
-                        }
-                    } catch(err) {
-                        console.warn("Could not fit bounds or set view on click:", err);
-                         map.setView(e.latlng, map.getZoom() < 4 ? 4 : map.getZoom());
-                    }
+                click: (e) => {
+                    map.fitBounds(e.target.getBounds(), {padding: [70,70], maxZoom: map.getZoom() + 2}); // Zoom in more
                 }
             });
         }
 
-        // GeoJSON লেয়ার তৈরি এবং মানচিত্রে যোগ করা
-        const geojsonLayer = L.geoJson(continentsGeoJSON, {
-            style: style,
-            onEachFeature: onEachFeature
-        }).addTo(map);
+        const geojsonLayer = L.geoJson(worldCountriesGeoJSON, { style: style, onEachFeature: onEachFeature }).addTo(map);
 
-
-        // -- লিজেন্ড --
+        // -- Legend --
         const legend = L.control({position: 'bottomright'});
         legend.onAdd = function (map) {
             const div = L.DomUtil.create('div', 'info legend');
-            div.innerHTML += '<h4>মহাদেশসমূহ</h4>';
-            continentsGeoJSON.features.forEach(feature => {
-                div.innerHTML +=
-                    '<i style="background:' + feature.properties.color + '"></i> ' +
-                    feature.properties.name_bn + '<br>';
+            div.innerHTML += '<h4>বিশ্বের উপ-অঞ্চলসমূহ</h4>';
+            const continentsOrder = ["এশিয়া", "আফ্রিকা", "ইউরোপ", "উত্তর আমেরিকা", "দক্ষিণ আমেরিকা", "অস্ট্রেলিয়া ও ওশেনিয়া", "আন্টার্কটিকা"];
+            const groupedSubRegions = {};
+
+            worldCountriesGeoJSON.features.forEach(f => {
+                const cont = f.properties.continent_bn;
+                const sub = f.properties.sub_region_bn;
+                if (!cont || !sub) return;
+                if (!groupedSubRegions[cont]) groupedSubRegions[cont] = new Set();
+                groupedSubRegions[cont].add(sub);
+            });
+
+            continentsOrder.forEach(continent => {
+                if (groupedSubRegions[continent] && groupedSubRegions[continent].size > 0) {
+                    div.innerHTML += `<span class="continent-group-v8">${continent}</span>`;
+                    groupedSubRegions[continent].forEach(subRegion => {
+                         if (subRegionColors[subRegion]) {
+                            div.innerHTML += `<span class="subregion-entry-v8"><i style="background:${subRegionColors[subRegion]}"></i> ${subRegion}</span>`;
+                        }
+                    });
+                }
             });
             return div;
         };
         legend.addTo(map);
 
-        // -- রিসাইজ হ্যান্ডলিং --
         window.addEventListener('resize', () => map.invalidateSize());
-
-        // -- ত্রুটি বার্তা --
         if (typeof L === 'undefined') {
-            document.getElementById('map').innerHTML = '<p style="color: red; text-align: center; padding: 20px;">মানচিত্র লোড করা যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।</p>';
+            document.getElementById('map').innerHTML = '<p style="color:red;text-align:center;padding:20px;">মানচিত্র লোড করা যায়নি।</p>';
         }
     </script>
 </body>
